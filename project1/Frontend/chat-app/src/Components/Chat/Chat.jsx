@@ -10,7 +10,7 @@ export const Chat = () => {
 
     useEffect(() => {
         if (user?.username) {
-            const socket = new WebSocket("ws://localhost:6789");
+            const socket = new WebSocket("ws://localhost:8080");
 
             socket.onopen = () => {
                 console.log("connected")

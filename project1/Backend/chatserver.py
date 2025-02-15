@@ -34,8 +34,8 @@ async def handle_client(websocket, path=None):
         await websocket.close()
 
 async def main():
-    server = await websockets.serve(handle_client, "localhost", 6789) 
-    print("WebSocket server started on ws://localhost:6789")
+    server = await websockets.serve(handle_client, "localhost", 8080) 
+    print("WebSocket server started on ws://localhost:8080")
     await server.wait_closed()
 
 asyncio.run(main())
