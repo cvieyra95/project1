@@ -37,7 +37,7 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
       -Before running database file, make sure to enter credentials to mysql database, it should look like this
    ```Python
-   app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Teddy7141995!@localhost/chatdb"
+   app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:password@localhost/databasename"
    ```
       -Run database file
 
