@@ -25,8 +25,7 @@ As a security analyst I was tasked with developing a real-time communication too
 
 1. Clone the repository:
 
-   git clone https://github.com/cvieyra95/project1.git
-   cd project1
+   git clone https://github.com/cvieyra95/project1.git  cd project1
 
 
 
