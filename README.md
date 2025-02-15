@@ -10,9 +10,23 @@ As a security toolg analyst I was tasked with developing a real-time communicati
 5. Connection Handling
 
 ## Technology
-1. Frontend: React.js
-2. Backend: Python
-3. Database: MySQL
+- Frontend: React.js
+- Backend: Python
+- Database: MySQL
+
+## Getting Started
+
+### Prerequisites
+- Node.js
+- Python
+- MySQL
+
+### Setup 
+
+1. Clone repository:
+   git clone https://github.com/cvieyra95/project1.git
+   cd project1
+
 
 
 
