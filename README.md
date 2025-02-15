@@ -17,6 +17,7 @@ As a security analyst I was tasked with developing a real-time communication too
 ## Getting Started
 
 ### Prerequisites
+#### Make sure these are installed or else it wont work
 - Node.js
 - Python
 - MySQL
@@ -29,22 +30,20 @@ As a security analyst I was tasked with developing a real-time communication too
    git clone https://github.com/cvieyra95/project1.git
    cd project1
    ```
-2. Setup Database: \
+2. Setup Database: 
    - Navigate to database directory
-
-      ```
-      cd Backend
-      ```
-      - Before running database file, make sure to enter credentials to mysql database, it should look like this
+   ```
+   cd Backend
+   ```
+   - Before running database file, make sure to enter credentials to mysql database, it should look like this
    ```Python
    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:password@localhost/databasename"
    ```
-      - Run database file
-
+    - Run database file
     ```
-      python database.py
-      ```
-4. Setup Websocket Server: \
+    python database.py
+    ```
+4. Setup Websocket Server: 
   - Navigate to server directory
    ```
    cd Backend
@@ -57,7 +56,7 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
       ws://localhost:8080
       ```
-4. Run Frontend \
+4. Run Frontend 
    - Navigate to front end directory
    ```
    cd Frontend
@@ -74,7 +73,7 @@ As a security analyst I was tasked with developing a real-time communication too
    ```
 
    # How to use
-1. Open the web application in your browser ######http://localhost:3000
+1. Open the web application in your browser ###### http://localhost:3000
 2. Login to your account
 3. If you dont have an account you can sign up and create an account
 4. Once you successfully login you can now securly chat!
