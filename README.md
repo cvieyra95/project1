@@ -30,22 +30,22 @@ As a security analyst I was tasked with developing a real-time communication too
    cd project1
    ```
 2. Setup Database: \
-   -Navigate to database directory
+   - Navigate to database directory
 
       ```
       cd Backend
       ```
-      -Before running database file, make sure to enter credentials to mysql database, it should look like this
+      - Before running database file, make sure to enter credentials to mysql database, it should look like this
    ```Python
    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:password@localhost/databasename"
    ```
-      -Run database file
+      - Run database file
 
     ```
       python database.py
       ```
 4. Setup Websocket Server: \
-  -Navigate to server directory
+  - Navigate to server directory
    ```
    cd Backend
    ```
@@ -53,17 +53,31 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
     python chatserver.py
       ```
+  - This will run the websocket server on:
+      ```
+      ws://localhost:8080
+      ```
 4. Run Frontend \
-   -Navigate to front end directory
+   - Navigate to front end directory
    ```
    cd Frontend
    cd chat-app
    ```
-   -Then run front end code
+   - Then run front end code
    ```
    npm install
    npm start
    ```
+   - This will launch the website on the browser on:
+   ```
+   http://localhost:3000
+   ```
+
+   # How to use
+1. Open the web application in your browser ######http://localhost:3000
+2. Login to your account
+3. If you dont have an account you can sign up and create an account
+4. Once you successfully login you can now securly chat!
 
 
 
