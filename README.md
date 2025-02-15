@@ -35,12 +35,16 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
       cd Backend
       ```
+      -Before running database file, make sure to enter credentials to mysql database, it should look like this
+   ```Python
+   app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Teddy7141995!@localhost/chatdb"
+   ```
       -Run database file
 
     ```
       python database.py
       ```
-3. Setup Websocket Server: \
+4. Setup Websocket Server: \
   -Navigate to server directory
    ```
    cd Backend
