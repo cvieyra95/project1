@@ -1,6 +1,6 @@
 # Secure Chat
 
-As a security toolg analyst I was tasked with developing a real-time communication tool called SecureChat, aimed for remote teams that require secure and efficient communication without relying on third-party services. This application focuses on websocket-based communication.
+As a security analyst I was tasked with developing a real-time communication tool called SecureChat, aimed for remote teams that require secure and efficient communication without relying on third-party services. This application focuses on websocket-based communication.
 
 ## Key Features
 1. Real-Time Messaging
@@ -23,7 +23,8 @@ As a security toolg analyst I was tasked with developing a real-time communicati
 
 ### Setup 
 
-1. Clone repository:
+1. Clone the repository:
+
    git clone https://github.com/cvieyra95/project1.git
    cd project1
 
