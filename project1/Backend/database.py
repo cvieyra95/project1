@@ -8,11 +8,10 @@ CORS(app)
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Teddy7141995!@localhost/chatdb"
+app.config["SQLALCHEMY_DATABASE_URI"] = 0 #databasecredential
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-# Define User model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -46,7 +45,6 @@ def login():
     return jsonify({"success": False, "message": "Invalid credentials"}), 401
 
 if __name__ == "__main__":
-    # Ensure the application context is active when creating tables
     with app.app_context():
         db.create_all()  # Create the database tables
     app.run(debug=True, port=5001)

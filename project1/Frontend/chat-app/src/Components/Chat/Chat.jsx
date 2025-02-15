@@ -20,7 +20,7 @@ export const Chat = () => {
             socket.onmessage = (event) => {
                 try {
                     const data = JSON.parse(event.data);
-                    setMessages((prev) => [...prev, `${data.sender}: ${data.message}`]);
+                    setMessages((prev) => [...prev, {sender: data.sender, message: data.message}]);
                 } catch (error) {
                     console.error("Error parsing message:", error);
                 }
@@ -38,8 +38,9 @@ export const Chat = () => {
 
     const sendMessage = () => {
         if (ws && message.trim()) {
-            const messageData = { message }; 
+            const messageData = { sender: user.username, message }; 
             ws.send(JSON.stringify(messageData));
+            setMessages((prev) => [...prev, {sender: user.username, message}])
             setMessage("");
         }
     };
@@ -49,7 +50,9 @@ export const Chat = () => {
             <h2>Chat Room</h2>
             <div className="chat-box">
                 {messages.map((msg, index) => (
-                    <div key={index} className="message">{msg}</div>
+                    <div key={index} className= {`message ${msg.sender === user.username? "sent" : "received" }`}>
+                        <strong>{msg.sender}:</strong> {msg.message}
+                    </div>
                 ))}
             </div>
             <div className="chat-input">
