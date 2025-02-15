@@ -43,6 +43,8 @@ As a security analyst I was tasked with developing a real-time communication too
     ```
     python database.py
     ```
+    - This database stores all of users and their passwords
+      
 4. Setup Websocket Server: 
   - Navigate to server directory
    ```
