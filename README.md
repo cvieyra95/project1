@@ -1,3 +1,18 @@
-# Project 1
+# Secure Chat
 
-You are a security tooling analyst working for SecureTech Solutions, a company specializing in software for distributed teams. The company is developing a real-time communication tool called SecureChat, aimed at remote teams that require secure and efficient communication without relying on third-party services like Slack or Teams. Your task is to design and implement the communication system for SecureChat, focusing on secure WebSocket-based communication.
+As a security toolg analyst I was tasked with developing a real-time communication tool called SecureChat, aimed for remote teams that require secure and efficient communication without relying on third-party services. This application focuses on websocket-based communication.
+
+##Key Features
+1. Real-Time Messaging
+2. Secure Connection
+3. User Authentication
+4. Rate Limiting
+5. Connection Handling
+
+##Technology
+1. Frontend: React.js
+2. Backend: Python
+3. Database: MySQL
+
+
+
