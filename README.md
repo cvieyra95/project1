@@ -29,7 +29,7 @@ As a security analyst I was tasked with developing a real-time communication too
    git clone https://github.com/cvieyra95/project1.git
    cd project1
    ```
-2. Setup Database:
+2. Setup Database: \
    -Navigate to database directory
 
       ```
@@ -40,7 +40,7 @@ As a security analyst I was tasked with developing a real-time communication too
     ```
       python database.py
       ```
-3. Setup Websocket Server:
+3. Setup Websocket Server: \
   -Navigate to server directory
    ```
    cd Backend
@@ -49,7 +49,7 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
     python chatserver.py
       ```
-4. Run Frontend
+4. Run Frontend \
    -Navigate to front end directory
    ```
    cd Frontend
