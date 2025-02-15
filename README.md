@@ -73,7 +73,7 @@ As a security analyst I was tasked with developing a real-time communication too
    ```
 
    # How to use
-1. Open the web application in your browser ###### http://localhost:3000
+1. Open the web application in your browser http://localhost:3000
 2. Login to your account
 3. If you dont have an account you can sign up and create an account
 4. Once you successfully login you can now securly chat!
