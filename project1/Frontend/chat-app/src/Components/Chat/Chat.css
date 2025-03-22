@@ -67,9 +67,33 @@
 
 .sent{
     align-self: flex-end;
-    background-color: #007bff;
+    background-color:#007bff;
 }
 .received {
     align-self: start;
     background-color: gray;
+}
+
+.emojiwindow {
+    position: absolute;
+    bottom: 70px; /* Adjust the height above the input box */
+    left: 360px; /* Align with input field */
+    z-index: 1000; /* Ensure it appears above other elements */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+/* Style the emoji button */
+.emojibutton{
+    background-color: red;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+.emojiwindow .EmojiPickerReact {
+    max-height: 1000px;
+    overflow-y: auto;
 }
