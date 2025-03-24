@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import "./Chat.css";
 import Emoji from  "emoji-picker-react"
+import CryptoJS from 'crypto-js'
 
 export const Chat = () => {
     const { user } = useContext(UserContext)
@@ -10,10 +11,16 @@ export const Chat = () => {
     const [ws, setWs] = useState(null)
     const [showEmoji, setShowEmoji] = useState(false)
     const [file, setFile] = useState(null)
+    const [activeChats, setActiveChats] = useState([])
+    const [selectedChat, setSelectedChat] = useState(null)
+    const [newChatUser, setNewChatUser] = useState("")
+    const [chatMessages, setChatMessages] = useState({})
+
+    const KEY = "1924143"
 
     useEffect(() => {
         if (user?.username) {
-            const socket = new WebSocket("ws://localhost:8080")
+            const socket = new WebSocket("ws://192.168.0.20:8080")
 
             socket.onopen = () => {
                 console.log("connected")
@@ -23,6 +30,16 @@ export const Chat = () => {
             socket.onmessage = (event) => {
                 try {
                     const data = JSON.parse(event.data);
+                    if(data.message){
+                        data.message = decryptMsg(data.message)
+                    }
+
+                    setChatMessages((prevMessages) => {
+                        const chatKey = data.sender
+                        return{
+                            ...prevMessages, [chatKey]: [...(prevMessages[chatKey] || []), data]
+                        }
+                    })
 
             if (data.fileContent) { 
                 setMessages((prev) => [...prev, {
@@ -36,7 +53,7 @@ export const Chat = () => {
                     sender: data.sender,
                     message: data.message
             }]);
-        }
+            }
             } catch (error) {
                 console.error("Error parsing message:", error);
                 }
@@ -57,17 +74,30 @@ export const Chat = () => {
     }
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
-            event.preventDefault(); // Prevent default Enter key behavior (new line)
+            event.preventDefault();
             sendMessage();
         }
     };
-
+    const startNewChat = () => {
+        if (newChatUser.trim() && !activeChats.includes(newChatUser)) {
+            setActiveChats([...activeChats, newChatUser]);
+        }
+        setSelectedChat(newChatUser);
+        setMessages([])
+        setNewChatUser(""); 
+    };
+    const handleChatSelect = chatUser => {
+        setSelectedChat(chatUser)
+    }
     const sendMessage = () => {
-        if (message && typeof message === "string" && message.trim()) {
-            const messageData = { sender: user.username, message } 
+        if (message && selectedChat && typeof message === "string" && message.trim()) {
+            const encryptedMsg = encryptMsg(message)
+            const messageData = { sender: user.username, recipient: selectedChat, message:encryptedMsg } 
             ws.send(JSON.stringify(messageData));
-            setMessages((prev) => [...prev, {sender: user.username, message}])
-            setMessage("");
+            setChatMessages((prevMessages) => ({
+                ...prevMessages, [selectedChat]: [...(prevMessages[selectedChat] || []), {...messageData, message:decryptMsg(encryptedMsg)}]
+            }))
+            setMessage("")
         }
         else if (file) {
             // Handle file message
@@ -76,12 +106,15 @@ export const Chat = () => {
             reader.onloadend = () => {
                 const fileData = {
                     sender: user.username,
+                    recipient: selectedChat,
                     fileName: file.name,
                     fileType: file.type,
                     fileContent: reader.result // Base64 encoding
                 };
                 ws.send(JSON.stringify(fileData));
-                setMessages((prev) => [...prev, fileData]);
+                setChatMessages((prevMessages) => ({
+                    ...prevMessages, [selectedChat]: [...(prevMessages[selectedChat] || []),fileData]
+                }))
                 setFile(null);
             };
             reader.onerror = (error) => {
@@ -89,18 +122,51 @@ export const Chat = () => {
             };
     };
 }
+const encryptMsg = (message) => {
+    return CryptoJS.AES.encrypt(message, KEY).toString()
+}
+
+const decryptMsg = (encryptedMsg) => {
+    const bytes = CryptoJS.AES.decrypt(encryptedMsg, KEY)
+    return bytes.toString(CryptoJS.enc.Utf8)
+}
+
 
     return (
+        <div className="site">
+            <div className="chatlist">
+                <div className="welcome">Hello, {user.username}</div>
+                
+                <div className="new-chat">
+                    <input
+                        type="text"
+                        placeholder="Enter username..."
+                        value={newChatUser}
+                        onChange={(e) => setNewChatUser(e.target.value)}
+                    />
+                    <button onClick={startNewChat}>Start Chat</button>
+                </div>
+                {activeChats.map((chatUser) => (
+                    <div
+                        key={chatUser}
+                        onClick={() => {setSelectedChat(chatUser); setMessages([])}}
+                        className={selectedChat === chatUser ? "active-chat" : ""}
+                    >
+                        {chatUser}
+                    </div>
+                ))}
+            </div>
         <div className="chat-container">
+            
             <div className="chat-box">
-                {messages.map((msg, index) => (
+                {(chatMessages[selectedChat] || []).map((msg, index) => (
                     <div key={index} className= {`message ${msg.sender === user.username? "sent" : "received" }`}>
-                        <strong>{msg.sender}:</strong> 
+                        <strong>{msg.sender}: </strong> 
                         {msg.fileContent ?  
                         (
                         msg.fileType.startsWith("image/") ? (<img src={msg.fileContent} alt={msg.fileName} style={{ maxWidth: "250px", maxHeight: "250px" }}/>)
                         :
-                        (< a href={`data:${msg.fileType};base64,${msg.fileContent}`} download={msg.fileName}> File {msg.fileName}</a>) 
+                        (< a href={`data:${msg.fileType};base64,${msg.fileContent}`} download={msg.fileName}>file{msg.fileName}</a>) 
                         )
                         : 
                         (`${msg.message}`)} 
@@ -123,6 +189,8 @@ export const Chat = () => {
                 <button onClick={sendMessage}>Send</button>
             </div>
         </div>
+        </div>
+        
     );
 };
 

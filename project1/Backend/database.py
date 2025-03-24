@@ -8,7 +8,7 @@ CORS(app)
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = 
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Teddy7141995!@localhost/chatdb"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
@@ -47,4 +47,4 @@ def login():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()  # Create the database tables
-    app.run(debug=True, port=5001)
+    app.run(host="0.0.0.0",debug = True, port=5001)
