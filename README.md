@@ -5,14 +5,15 @@ As a security analyst I was tasked with developing a real-time communication too
 ## Key Features
 1. Real-Time Messaging
 2. Secure Connection
-3. User Authentication
-4. Message Encryption
-5. Rate Limiting
-6. Connection Handling
-7. User-Friendly GUI
-8. Chat with multiple users
-9. File Shring Capablitiles
-10. Emojis 
+3. User Authentication 
+4. Password Encryption
+5. Message Encryption
+6. Rate Limiting
+7. Connection Handling
+8. User-Friendly GUI
+9. Chat with multiple users
+10. File Shring Capablitiles
+11. Emojis 
 
 ## Technology
 - Frontend: React.js
