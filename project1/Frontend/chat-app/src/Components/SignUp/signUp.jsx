@@ -7,10 +7,15 @@ export const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const passwordPolicy = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/
 
     const handleSignup = async () => {
+        if(!passwordPolicy.test(password)){
+            alert("password does not meet criteria")
+            return
+        }
         try {
-            const response = await axios.post("http://localhost:5001/signup", {
+            const response = await axios.post("http://192.168.0.20:5001/signup", {
                 username,
                 password
             });
@@ -49,6 +54,11 @@ export const Signup = () => {
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                 </div>
+                <p>-Password must be at least 10 characters long</p>
+                <p>-Password must contain a uppercase letter</p>
+                <p>-Password must contain a lowercase letter</p>
+                <p>-Password must contain a number</p>
+                <p>-Password must contain a special character</p>
                 <button type="button" className="btn" onClick={handleSignup}>Sign Up</button>
                 <div className="loginlink">
                     <label onClick={() => navigate("/login")}>Already have an account? Login</label>

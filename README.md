@@ -5,9 +5,15 @@ As a security analyst I was tasked with developing a real-time communication too
 ## Key Features
 1. Real-Time Messaging
 2. Secure Connection
-3. User Authentication
-4. Rate Limiting
-5. Connection Handling
+3. User Authentication 
+4. Password Encryption
+5. Message Encryption
+6. Rate Limiting
+7. Connection Handling
+8. User-Friendly GUI
+9. Chat with multiple users
+10. File Shring Capablitiles
+11. Emojis 
 
 ## Technology
 - Frontend: React.js
@@ -56,7 +62,7 @@ As a security analyst I was tasked with developing a real-time communication too
       ```
   - This will run the websocket server on:
       ```
-      ws://localhost:8080
+      ws://ipaddress:8080
       ```
 4. Run Frontend 
    - Navigate to front end directory
@@ -71,11 +77,11 @@ As a security analyst I was tasked with developing a real-time communication too
    ```
    - This will launch the website on the browser on:
    ```
-   http://localhost:3000
+   http://ipaddress:3000
    ```
 
    # How to use
-1. Once everything is running, Open the web application in your browser http://localhost:3000
+1. Once everything is running, Open the web application in your browser http://ipaddress:3000
 2. Login to your account
 3. If you dont have an account you can sign up and create an account
 4. Once you successfully login you can now securly chat!

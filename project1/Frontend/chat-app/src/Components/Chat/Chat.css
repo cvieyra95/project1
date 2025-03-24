@@ -1,3 +1,7 @@
+.site{
+    display: flex;
+}
+
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -18,7 +22,44 @@
     padding: 10px;
     background: #f9f9f9;
 }
-
+.chatlist {
+    display: flex;
+    width: 350px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px lightgrey;
+}
+.welcome{
+    border-top: 1px solid #ddd;
+    font-size: 35px;
+}
+.chatlist div{
+    padding: 10px;
+    cursor: pointer;
+}
+.new-chat{
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+.new-chat button{
+    margin-left: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.active-chat {
+    color: white;
+    background: rgb(99, 99,102);
+}
 .message {
     background: #007bff;
     color: white;
@@ -67,9 +108,32 @@
 
 .sent{
     align-self: flex-end;
-    background-color: #007bff;
+    background-color:#007bff;
 }
 .received {
     align-self: start;
-    background-color: gray;
+    background-color: rgb(99, 99,102);
+}
+
+.emojiwindow {
+    position: absolute;
+    bottom: 70px;
+    left: 360px; 
+    z-index: 1000; 
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+.emojibutton{
+    background-color: red;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+.emojiwindow .EmojiPickerReact {
+    max-height: 1000px;
+    overflow-y: auto;
 }

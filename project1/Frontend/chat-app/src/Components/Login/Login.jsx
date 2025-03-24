@@ -8,25 +8,44 @@ export const Login = () => {
     const {login} = useContext(UserContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loginAttempts, setLoginAttempts] = useState(0)
+    const [lockoutTime, setLockoutTime] =  useState(null)
     const navigate = useNavigate();
 
     const logInUser = async () => {
-        try {
-            const response = await axios.post("http://localhost:5001/login", {
+        try{
+            const response = await axios.post("http://192.168.0.20:5001/login", {
                 username,
                 password
             });
             if (response.data.success) {
                 login({username})
                 navigate("/chat");
-            } else {
-                alert("Login failed: Incorrect username or password");
+            } 
+        } catch(error)
+            {
+                if (error.response)
+                {
+                    if(error.response.status === 401)
+                    {
+                        setLoginAttempts(prevAttempts => prevAttempts +1)
+                        if(loginAttempts + 1 >= 5)
+                        {
+                            alert("Too many failed attempts, Account locked for 15 minutes")
+                            setLockoutTime(Date.now()+200)
+                        }
+                        else {
+                            alert("Login Failed: Inccorect username or password")
+                        }
+                    }
+                    else{
+                        alert("Error")
+                    }
+                }
             }
-        } catch (error) {
-            console.error("Login error:", error);
-            alert("Login failed. Please try again.");
-        }
     };
+
+    const lockedOut = lockoutTime && Date.now() < lockoutTime
 
     return (
         <div className="container">
@@ -41,6 +60,7 @@ export const Login = () => {
                         placeholder="Username" 
                         value={username} 
                         onChange={(e) => setUsername(e.target.value)} 
+                        disabled={lockedOut}
                     />
                 </div>
                 <div className="textbox">
@@ -49,13 +69,20 @@ export const Login = () => {
                         placeholder="Password" 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
+                        disabled={lockedOut}
                     />
                 </div>
                 <div className="remember-me">
                     <input type="checkbox" id="remember" />
                     <label htmlFor="remember">Remember Me</label>
                 </div>
-                <button type="button" className="btn" onClick={logInUser}>Login</button>
+                <button type="button" className="btn" onClick={logInUser} disabled={lockedOut}>Login</button>
+                {lockedOut && (<div className="lockout">
+                    Your account is locked, please try again in {Math.ceil((lockoutTime - Date.now()) / 60000)} minutes
+                     </div>)}
+
+
+
                 <div className="signuplink">
                     <label onClick={() => navigate("/signup")}>Sign Up</label>
                 </div>
