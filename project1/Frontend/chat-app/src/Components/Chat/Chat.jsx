@@ -20,7 +20,7 @@ export const Chat = () => {
 
     useEffect(() => {
         if (user?.username) {
-            const socket = new WebSocket("ws://192.168.0.20:8080")
+            const socket = new WebSocket("ws://project1-production-ccdd.up.railway.app")
 
             socket.onopen = () => {
                 console.log("connected")

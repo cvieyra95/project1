@@ -15,7 +15,7 @@ export const Signup = () => {
             return
         }
         try {
-            const response = await axios.post("http://192.168.0.20:5001/signup", {
+            const response = await axios.post("project1-production-ccdd.up.railway.app/signup", {
                 username,
                 password
             });

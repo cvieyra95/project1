@@ -3,12 +3,21 @@ import websockets
 import json
 import time
 import os
+import mysql.connector
 
 clients = {}
 counter = {}
 MSG_LIMIT = 5 
 WINDOW = 1    
-LOG_FILE = "chatlogs.txt" 
+
+def dbConnect():
+    return mysql.connector.connect(
+        host = os.environ.get("sql204.infinityfree.com"),
+        user = os.environ.get("if0_38731683"),
+        password = os.environ.get("z7ailhKmanQrkeQ"),
+        database = os.environ.get("chatdb")
+    )
+
 
 
 async def handle_client(websocket, path=None):
@@ -76,8 +85,19 @@ async def handle_client(websocket, path=None):
         await websocket.close()
 
 def log_messages(sender, recipient, message):
-    with open(LOG_FILE, "a") as file:
-        file.write(f"{time.strftime('%Y-%m-%d %H:%M:')} | {sender} to {recipient} | {message}\n" )
+        try:
+            connect = dbConnect()
+            cursor = connect.cursor()
+            timestamp = time.strftime('%Y-%m-%d %H:%M:')
+            cursor.execute(
+            "INSERT INTO messages (sender, recipient, message, timestamp) VALUES (%s, %s, %s, %s)",
+            (sender, recipient, message, timestamp)
+            )
+            connect.commit()
+            cursor.close()
+            connect.close()
+        except mysql.connector.Error as err:
+            print(f"Database error: {err}")
 
 async def main():
     PORT = int(os.environ.get("PORT", 8080))

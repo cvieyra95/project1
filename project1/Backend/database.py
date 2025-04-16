@@ -8,7 +8,7 @@ CORS(app)
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://@localhost/chatdb"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://if0_38731683:z7ailhKmanQrkeQ@sql204.infinityfree.com/if0_38731683_chatdb"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
