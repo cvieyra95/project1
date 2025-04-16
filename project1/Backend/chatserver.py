@@ -80,7 +80,8 @@ def log_messages(sender, recipient, message):
         file.write(f"{time.strftime('%Y-%m-%d %H:%M:')} | {sender} to {recipient} | {message}\n" )
 
 async def main():
-    server = await websockets.serve(handle_client, "0.0.0.0", 8080) 
+    PORT = int(os.environ.get("PORT", 8080))
+    server = await websockets.serve(handle_client, "0.0.0.0", PORT) 
     print("WebSocket server started")
     await server.wait_closed()
 
