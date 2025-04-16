@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*" : {"origins": "http://secure-chat.free.nf"}})
+CORS(app, supports_credentials=True, resources={r"/*" : {"origins": "http://secure-chat.free.nf"}})
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
