@@ -1,1 +1,2 @@
 web: python chatserver.py
+web: python database.py
