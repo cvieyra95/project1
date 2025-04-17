@@ -12,6 +12,25 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:XLYqKyldRtAlkFzMOQ
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+@app.before_request
+def handle_preflight():
+    if request.method == "OPTIONS":
+        resp = app.make_default_options_response()
+        headers = resp.headers
+        headers["Access-Control-Allow-Origin"] = "http://secure-chat.free.nf"
+        headers["Access-Control-Allow-Credentials"] = "true"
+        headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
+        headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
+        return resp
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "http://secure-chat.free.nf"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
+    return response
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -43,15 +62,6 @@ def login():
         return jsonify({"success": True, "message": "Login successful!"})
     
     return jsonify({"success": False, "message": "Invalid credentials"}), 401
-
-@app.before_request
-def handle_preflight():
-    if request.method == "OPTIONS":
-        response = make_response()
-        response.headers["Access-Control-Allow-Origin"] = "http://secure-chat.free.nf"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
-        response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
-        return response
 
 if __name__ == "__main__":
     with app.app_context():
