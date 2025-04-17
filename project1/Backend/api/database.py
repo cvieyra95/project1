@@ -8,7 +8,7 @@ CORS(app, supports_credentials=True)
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://mysql://root:XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY@caboose.proxy.rlwy.net:18499/railway"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY@caboose.proxy.rlwy.net:18499/railway"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
