@@ -3,3 +3,4 @@ Flask-Bcrypt
 Flask-Cors
 Flask-SQLAlchemy
 PyMySQL
+cryptography
