@@ -1,2 +1,7 @@
 websockets
 mysql-connector-python
+Flask
+Flask-Bcrypt
+Flask-Cors
+Flask-SQLAlchemy
+PyMySQL

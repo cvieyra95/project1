@@ -12,10 +12,10 @@ WINDOW = 1
 
 def dbConnect():
     return mysql.connector.connect(
-        host = os.environ.get("sql204.infinityfree.com"),
-        user = os.environ.get("if0_38731683"),
-        password = os.environ.get("z7ailhKmanQrkeQ"),
-        database = os.environ.get("chatdb")
+        host = os.environ.get("mysql.railway.internal"),
+        user = os.environ.get("root"),
+        password = os.environ.get("XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAYQ"),
+        database = os.environ.get("railway")
     )
 
 

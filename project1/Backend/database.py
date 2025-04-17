@@ -8,7 +8,7 @@ CORS(app, supports_credentials=True, resources={r"/*" : {"origins": "http://secu
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://if0_38731683:z7ailhKmanQrkeQ@sql204.infinityfree.com/if0_38731683_chatdb"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY@mysql.railway.internal:3306/railway"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
