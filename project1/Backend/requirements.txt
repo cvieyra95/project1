@@ -1,1 +1,2 @@
 websockets
+mysql-connector-python
