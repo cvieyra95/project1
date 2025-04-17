@@ -17,9 +17,6 @@ def dbConnect():
         password = os.environ.get("XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAYQ"),
         database = os.environ.get("railway")
     )
-
-
-
 async def handle_client(websocket, path=None):
     username = None
 
