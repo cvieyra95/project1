@@ -97,7 +97,7 @@ def log_messages(sender, recipient, message):
             print(f"Database error: {err}")
 
 async def main():
-    PORT = int(os.environ.get("PORT", 8080))
+    PORT = int(os.environ.get("PORT", 9000))
     server = await websockets.serve(handle_client, "0.0.0.0", PORT) 
     print("WebSocket server started")
     await server.wait_closed()
