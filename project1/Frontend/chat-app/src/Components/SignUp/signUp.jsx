@@ -15,7 +15,7 @@ export const Signup = () => {
             return
         }
         try {
-            const response = await axios.post("project1-production-ccdd.up.railway.app/signup", {
+            const response = await axios.post("https://project1-production-ccdd.up.railway.app/signup", {
                 username,
                 password
             });
