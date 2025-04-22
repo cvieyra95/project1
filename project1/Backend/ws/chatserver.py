@@ -86,7 +86,7 @@ def log_messages(sender, recipient, message):
         try:
             connect = dbConnect()
             cursor = connect.cursor()
-            timestamp = time.strftime('%Y-%m-%d %H:%M:')
+            timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
             cursor.execute(
             "INSERT INTO messages (sender, recipient, message, timestamp) VALUES (%s, %s, %s, %s)",
             (sender, recipient, message, timestamp)
