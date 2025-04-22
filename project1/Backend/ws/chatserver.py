@@ -11,11 +11,12 @@ MSG_LIMIT = 5
 WINDOW = 1    
 
 def dbConnect():
-    host = os.environ.get("MYSQLHOST", "caboose.proxy.rlwy.net")
-    port = int(os.environ.get("MYSQLPORT", "18499"))
     return mysql.connector.connect(
-        password=os.environ.get("MYSQLPASSWORD", "XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY"),
-        database=os.environ.get("MYSQLDATABASE", "railway")
+        host="caboose.proxy.rlwy.net",
+        port=18499,
+        user="root",
+        password="XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY",
+        database="railway"
     )
 async def handle_client(websocket, path=None):
     username = None
