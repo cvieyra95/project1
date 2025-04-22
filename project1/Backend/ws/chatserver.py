@@ -11,9 +11,9 @@ MSG_LIMIT = 5
 WINDOW = 1    
 
 def dbConnect():
+    host = os.environ.get("MYSQLHOST", "caboose.proxy.rlwy.net")
+    port = int(os.environ.get("MYSQLPORT", "18499"))
     return mysql.connector.connect(
-        host=os.environ.get("MYSQLHOST", "mysql.railway.internal"),
-        user=os.environ.get("MYSQLUSER", "root"),
         password=os.environ.get("MYSQLPASSWORD", "XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY"),
         database=os.environ.get("MYSQLDATABASE", "railway")
     )
