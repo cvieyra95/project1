@@ -12,9 +12,9 @@ WINDOW = 1
 
 def dbConnect():
     return mysql.connector.connect(
-        host = os.environ.get("mysql.railway.internal"),
+        host = os.environ.get("caboose.proxy.rlwy.net:18499"),
         user = os.environ.get("root"),
-        password = os.environ.get("XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAYQ"),
+        password = os.environ.get("XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY"),
         database = os.environ.get("railway")
     )
 async def handle_client(websocket, path=None):
