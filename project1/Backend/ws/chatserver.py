@@ -4,6 +4,8 @@ import json
 import time
 import os
 import mysql.connector
+from dotenv import load_dotenv
+load_dotenv()
 
 clients = {}
 counter = {}
@@ -12,11 +14,11 @@ WINDOW = 1
 
 def dbConnect():
     return mysql.connector.connect(
-        host="caboose.proxy.rlwy.net",
-        port=18499,
-        user="root",
-        password="XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY",
-        database="railway"
+        host= os.environ.get("host"),
+        port= int(os.environ.get("port", 3306)),
+        user= os.environ.get("user"),
+        password= os.environ.get("password"),
+        database= os.environ.get("name")
     )
 async def handle_client(websocket, path=None):
     username = None
