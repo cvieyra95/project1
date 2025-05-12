@@ -2,13 +2,19 @@ from flask import Flask, request, jsonify, make_response
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 bcrypt = Bcrypt(app)
 
 # Configure MySQL database
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:XLYqKyldRtAlkFzMOQxPFTNnQRIkEEAY@caboose.proxy.rlwy.net:18499/railway"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    f"mysql+pymysql://{os.environ.get('user')}:{os.environ.get('password')}"
+    f"@{os.environ.get('host')}:{os.environ.get('port')}/{os.environ.get('name')}"
+)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
