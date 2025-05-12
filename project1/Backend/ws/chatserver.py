@@ -13,7 +13,7 @@ WINDOW = 1
 def dbConnect():
     return mysql.connector.connect(
         host= os.environ.get("HOST"),
-        port= int(os.environ.get("PORT", 8000)),
+        port= int(os.environ.get("DB_PORT", 3306)),
         user= os.environ.get("USER"),
         password= os.environ.get("PASSWORD"),
         database= os.environ.get("NAME")
