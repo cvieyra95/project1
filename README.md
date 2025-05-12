@@ -21,6 +21,6 @@ As a security analyst I was tasked with developing a real-time communication too
 - Database: MySQL
 
 ## How To Use The Website
-1. Go to the Website URL: https://secure-chat.free.nf/?i=2
+1. Go to the Website URL: https://secure-chat.free.nf
 2. If you're a new user click on the sign up link and follow the instructions to signup
 3. If you're a returning user just sign in and enjoy safe chatting with other users.
