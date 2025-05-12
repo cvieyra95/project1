@@ -4,8 +4,6 @@ import json
 import time
 import os
 import mysql.connector
-from dotenv import load_dotenv
-load_dotenv()
 
 clients = {}
 counter = {}

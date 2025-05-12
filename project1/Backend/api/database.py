@@ -3,8 +3,6 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
