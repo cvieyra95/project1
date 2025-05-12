@@ -10,8 +10,8 @@ bcrypt = Bcrypt(app)
 
 # Configure MySQL database
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    f"mysql+pymysql://{os.environ.get('user')}:{os.environ.get('password')}"
-    f"@{os.environ.get('host')}:{os.environ.get('port')}/{os.environ.get('name')}"
+    f"mysql+pymysql://{os.environ.get('USER')}:{os.environ.get('PASSWORD')}"
+    f"@{os.environ.get('HOST')}:{os.environ.get('PORT')}/{os.environ.get('NAME')}"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)

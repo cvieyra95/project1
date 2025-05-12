@@ -12,11 +12,11 @@ WINDOW = 1
 
 def dbConnect():
     return mysql.connector.connect(
-        host= os.environ.get("host"),
-        port= int(os.environ.get("port", 3306)),
-        user= os.environ.get("user"),
-        password= os.environ.get("password"),
-        database= os.environ.get("name")
+        host= os.environ.get("HOST"),
+        port= int(os.environ.get("PORT", 3306)),
+        user= os.environ.get("USER"),
+        password= os.environ.get("PASSWORD"),
+        database= os.environ.get("NAME")
     )
 async def handle_client(websocket, path=None):
     username = None
